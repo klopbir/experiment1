@@ -38,6 +38,7 @@ namespace adas
                     --pose.y;
                 }
             }
+            
         }
     }
 }
