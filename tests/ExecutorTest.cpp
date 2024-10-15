@@ -18,7 +18,7 @@ namespace adas
 
     TEST(ExecutorTest, should_return_default_pose_when_without_init_and_command)
     {
-        std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'E'}));
+        std::unique_ptr<Executor> executor(Executor::NewExecutor());
         const Pose target({0, 0, 'N'});
         ASSERT_EQ(target, executor->Query());
     }
@@ -27,7 +27,7 @@ namespace adas
     {
         std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'E'}));
         executor->Execute("M");
-        const Pose target({0, 0, 'E'});
+        const Pose target({1, 0, 'E'});
         ASSERT_EQ(target, executor->Query());
     }
 }

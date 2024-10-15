@@ -17,5 +17,27 @@ namespace adas
 
     void ExecutorImpl::Execute(const std::string &commands) noexcept
     {
+        for (const auto cmd : commands)
+        {
+            if (cmd == 'M')
+            {
+                if (pose.heading == 'E')
+                {
+                    ++pose.x;
+                }
+                if (pose.heading == 'W')
+                {
+                    --pose.x;
+                }
+                if (pose.heading == 'N')
+                {
+                    ++pose.y;
+                }
+                if (pose.heading == 'S')
+                {
+                    --pose.y;
+                }
+            }
+        }
     }
 }
