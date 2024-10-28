@@ -38,7 +38,25 @@ namespace adas
                     --pose.y;
                 }
             }
-            
+            if (cmd == 'L')
+            {
+                if (pose.heading == 'N')
+                {
+                    pose.heading = 'W';
+                }
+                else if (pose.heading == 'S')
+                {
+                    pose.heading = 'E';
+                }
+                else if (pose.heading == 'E')
+                {
+                    pose.heading = 'N';
+                }
+                else if (pose.heading == 'W')
+                {
+                    pose.heading = 'S';
+                }
+            }
         }
     }
 }
