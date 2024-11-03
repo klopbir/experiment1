@@ -20,6 +20,6 @@ if EXE_FILE!=="" (
     exit(1)
 )
 
-%EXE_FILE%
+"%EXE_FILE%"
 
 popd
