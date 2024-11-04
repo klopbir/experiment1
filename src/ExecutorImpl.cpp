@@ -6,7 +6,14 @@
 namespace adas
 {
     ExecutorImpl::ExecutorImpl(const Pose &pose) noexcept : pose(pose) {}
-
+    void ExecutorImpl::Fast(void) noexcept
+    {
+        fast = !fast;
+    }
+    bool ExecutorImpl::isFast(void) const noexcept
+    {
+        return fast;
+    }
     void ExecutorImpl::Move() noexcept
     {
         if (pose.heading == 'E')
@@ -94,14 +101,10 @@ namespace adas
             }
             if (cmd == 'F')
             {
-                isFast = !isFast;
+                cmder = std::make_unique<FastCommand>();
             }
             if (cmder)
             {
-                if (isFast)
-                {
-                    Move();
-                }
                 cmder->DoOperate(*this);
             }
         }
