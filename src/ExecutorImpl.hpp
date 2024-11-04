@@ -27,26 +27,32 @@ namespace adas
         void TurnRight(void) noexcept;
         // nested classes can be later declared as if functions, nested classes friends are not friends with encloser class
         // u can access encloses classes private members as nested class is considered another member
-        class MoveCommand final
+        class ICommand
+        {
+        public:
+            virtual ~ICommand() = default;
+            virtual void DoOperate(ExecutorImpl &) const noexcept = 0;
+        };
+        class MoveCommand final : public ICommand
         {
         public: // enclosed class does not have access to private members of nested class
-            void DoOperate(ExecutorImpl &executor) const noexcept
+            void DoOperate(ExecutorImpl &executor) const noexcept override
             {
                 executor.Move();
             }
         };
-        class TurnLeftCommand final
+        class TurnLeftCommand final : public ICommand
         {
-        public: // enclosed class does not have access to private members of nested class
-            void DoOperate(ExecutorImpl &executor) const noexcept
+        public:
+            void DoOperate(ExecutorImpl &executor) const noexcept override
             {
                 executor.TurnLeft();
             }
         };
-        class TurnRightCommand final
+        class TurnRightCommand final : public ICommand
         {
-        public: // enclosed class does not have access to private members of nested class
-            void DoOperate(ExecutorImpl &executor) const noexcept
+        public:
+            void DoOperate(ExecutorImpl &executor) const noexcept override
             {
                 executor.TurnRight();
             }
