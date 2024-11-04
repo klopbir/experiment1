@@ -85,7 +85,8 @@ namespace adas
             }
             if (cmd == 'L')
             {
-                TurnLeft();
+                std::unique_ptr<TurnLeftCommand> cmder = std::make_unique<TurnLeftCommand>();
+                cmder->DoOperate(*this);
             }
             if (cmd == 'R')
             {

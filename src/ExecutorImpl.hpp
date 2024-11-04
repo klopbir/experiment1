@@ -35,5 +35,13 @@ namespace adas
                 executor.Move();
             }
         };
+        class TurnLeftCommand final
+        {
+        public: // enclosed class does not have access to private members of nested class
+            void DoOperate(ExecutorImpl &executor) const noexcept
+            {
+                executor.TurnLeft();
+            }
+        };
     };
 }
