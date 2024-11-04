@@ -5,7 +5,7 @@ namespace adas
 {
     ExecutorImpl::ExecutorImpl(const Pose &pose) noexcept : pose(pose) {}
 
-    void ExecutorImpl::Move()
+    void ExecutorImpl::Move() noexcept
     {
         if (pose.heading == 'E')
         {
@@ -25,7 +25,7 @@ namespace adas
         }
     }
 
-    void ExecutorImpl::TurnLeft(void)
+    void ExecutorImpl::TurnLeft(void) noexcept
     {
         if (pose.heading == 'N')
         {
@@ -44,7 +44,7 @@ namespace adas
             pose.heading = 'S';
         }
     }
-    void ExecutorImpl::TurnRight(void)
+    void ExecutorImpl::TurnRight(void) noexcept
     {
         if (pose.heading == 'N')
         {
