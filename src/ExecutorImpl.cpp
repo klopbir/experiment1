@@ -1,10 +1,29 @@
 #include "ExecutorImpl.hpp"
 #include <new>
-
+// to switch branches in git just write git checkout <branch_name>
 namespace adas
 {
     ExecutorImpl::ExecutorImpl(const Pose &pose) noexcept : pose(pose) {}
 
+    void ExecutorImpl::Move()
+    {
+        if (pose.heading == 'E')
+        {
+            ++pose.x;
+        }
+        if (pose.heading == 'W')
+        {
+            --pose.x;
+        }
+        if (pose.heading == 'N')
+        {
+            ++pose.y;
+        }
+        if (pose.heading == 'S')
+        {
+            --pose.y;
+        }
+    }
     Pose ExecutorImpl::Query(void) const noexcept
     {
         return pose;
@@ -21,22 +40,7 @@ namespace adas
         {
             if (cmd == 'M')
             {
-                if (pose.heading == 'E')
-                {
-                    ++pose.x;
-                }
-                if (pose.heading == 'W')
-                {
-                    --pose.x;
-                }
-                if (pose.heading == 'N')
-                {
-                    ++pose.y;
-                }
-                if (pose.heading == 'S')
-                {
-                    --pose.y;
-                }
+                Move();
             }
             if (cmd == 'L')
             {

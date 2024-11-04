@@ -22,5 +22,6 @@ namespace adas
 
     private:
         Pose pose;
+        void Move(void) noexcept;
     };
 }
