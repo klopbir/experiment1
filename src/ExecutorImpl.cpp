@@ -24,6 +24,26 @@ namespace adas
             --pose.y;
         }
     }
+
+    void ExecutorImpl::TurnLeft(void)
+    {
+        if (pose.heading == 'N')
+        {
+            pose.heading = 'W';
+        }
+        else if (pose.heading == 'S')
+        {
+            pose.heading = 'E';
+        }
+        else if (pose.heading == 'E')
+        {
+            pose.heading = 'N';
+        }
+        else if (pose.heading == 'W')
+        {
+            pose.heading = 'S';
+        }
+    }
     Pose ExecutorImpl::Query(void) const noexcept
     {
         return pose;
@@ -44,22 +64,7 @@ namespace adas
             }
             if (cmd == 'L')
             {
-                if (pose.heading == 'N')
-                {
-                    pose.heading = 'W';
-                }
-                else if (pose.heading == 'S')
-                {
-                    pose.heading = 'E';
-                }
-                else if (pose.heading == 'E')
-                {
-                    pose.heading = 'N';
-                }
-                else if (pose.heading == 'W')
-                {
-                    pose.heading = 'S';
-                }
+                TurnLeft();
             }
             if (cmd == 'R')
             {
