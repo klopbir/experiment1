@@ -21,6 +21,7 @@ namespace adas
         void Execute(const std::string &commands) noexcept override;
 
     private:
+        bool isFast = 0;
         Pose pose;
         void Move(void) noexcept;
         void TurnLeft(void) noexcept;

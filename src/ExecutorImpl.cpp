@@ -92,8 +92,16 @@ namespace adas
             {
                 cmder = std::make_unique<TurnRightCommand>();
             }
+            if (cmd == 'F')
+            {
+                isFast = !isFast;
+            }
             if (cmder)
             {
+                if (isFast)
+                {
+                    Move();
+                }
                 cmder->DoOperate(*this);
             }
         }
