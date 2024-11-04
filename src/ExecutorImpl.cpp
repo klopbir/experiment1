@@ -1,5 +1,6 @@
 #include "ExecutorImpl.hpp"
 #include <iostream>
+#include <memory>
 #include <new>
 // to switch branches in git just write git checkout <branch_name>
 namespace adas
