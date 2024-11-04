@@ -91,15 +91,15 @@ namespace adas
             {
                 cmder = std::make_unique<MoveCommand>();
             }
-            if (cmd == 'L')
+            else if (cmd == 'L')
             {
                 cmder = std::make_unique<TurnLeftCommand>();
             }
-            if (cmd == 'R')
+            else if (cmd == 'R')
             {
                 cmder = std::make_unique<TurnRightCommand>();
             }
-            if (cmd == 'F')
+            else if (cmd == 'F')
             {
                 cmder = std::make_unique<FastCommand>();
             }
