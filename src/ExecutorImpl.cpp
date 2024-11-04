@@ -1,4 +1,5 @@
 #include "ExecutorImpl.hpp"
+#include <iostream>
 #include <new>
 // to switch branches in git just write git checkout <branch_name>
 namespace adas
@@ -79,7 +80,8 @@ namespace adas
         {
             if (cmd == 'M')
             {
-                Move();
+                std::unique_ptr<MoveCommand> cmder = std::make_unique<MoveCommand>();
+                cmder->DoOperate(*this);
             }
             if (cmd == 'L')
             {
