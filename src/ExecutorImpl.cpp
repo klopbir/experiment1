@@ -3,6 +3,7 @@
 #include <memory>
 #include <new>
 #include "Command.hpp"
+#include <unordered_map>
 // to switch branches in git just write git checkout <branch_name>
 namespace adas
 {
@@ -20,26 +21,17 @@ namespace adas
     {
         for (const auto cmd : commands)
         {
-            std::unique_ptr<ICommand> cmder;
-            if (cmd == 'M')
+            std::unordered_map<char, std::unique_ptr<ICommand>> cmderMap;
+            cmderMap.emplace('M', std::make_unique<MoveCommand>());
+            cmderMap.emplace('L', std::make_unique<TurnLeftCommand>());
+            cmderMap.emplace('R', std::make_unique<TurnRightCommand>());
+            cmderMap.emplace('F', std::make_unique<FastCommand>());
+            // cmderMap.emplace('B', std::make_unique<ReverseCommand>);
+            // std::unique_ptr<ICommand> cmder;
+            const auto it = cmderMap.find(cmd); // find return pair<const Key, T> type if it finds the key, and unordered_map::end if it does not(end is element past the end of container)
+            if (it != cmderMap.end())           // end returns iterator to end (iterator uses pair type as return value)
             {
-                cmder = std::make_unique<MoveCommand>();
-            }
-            else if (cmd == 'L')
-            {
-                cmder = std::make_unique<TurnLeftCommand>();
-            }
-            else if (cmd == 'R')
-            {
-                cmder = std::make_unique<TurnRightCommand>();
-            }
-            else if (cmd == 'F')
-            {
-                cmder = std::make_unique<FastCommand>();
-            }
-            if (cmder)
-            {
-                cmder->DoOperate(posehandler);
+                it->second->DoOperate(posehandler); // second indicates mapped value
             }
         }
     }
