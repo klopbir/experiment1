@@ -2,6 +2,7 @@
 #include <iostream>
 #include <memory>
 #include <new>
+#include "Command.hpp"
 // to switch branches in git just write git checkout <branch_name>
 namespace adas
 {
