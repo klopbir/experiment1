@@ -2,6 +2,7 @@
 
 #include "Executor.hpp"
 #include <string>
+#include "PoseHandler.hpp"
 
 namespace adas
 {
@@ -19,18 +20,10 @@ namespace adas
     public:
         Pose Query(void) const noexcept override;
         void Execute(const std::string &commands) noexcept override;
-
-    public:
-        void Move(void) noexcept;
-        void TurnLeft(void) noexcept;
-        void TurnRight(void) noexcept;
-        void Fast(void) noexcept;
-        bool isFast(void) const noexcept;
         // nested classes can be later declared as if functions, nested classes friends are not friends with encloser class
         // u can access encloses classes private members as nested class is considered another member
 
     private:
-        Pose pose;
-        bool fast{false};
+        PoseHandler posehandler;
     };
 }

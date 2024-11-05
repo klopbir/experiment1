@@ -1,4 +1,5 @@
 #include <ExecutorImpl.hpp>
+#include "PoseHandler.hpp"
 #include <iostream>
 #include <memory>
 #include <tuple>
@@ -9,54 +10,54 @@ namespace adas
     {
     public:
         virtual ~ICommand() = default;
-        virtual void DoOperate(ExecutorImpl &) const noexcept = 0;
+        virtual void DoOperate(PoseHandler &posehandler) const noexcept = 0;
     };
 
     class MoveCommand final : public ICommand
     {
     public: // enclosed class does not have access to private members of nested class
-        void DoOperate(ExecutorImpl &executor) const noexcept override
+        void DoOperate(PoseHandler &posehandler) const noexcept override
         {
-            if (executor.isFast())
+            if (posehandler.isFast())
             {
-                executor.Move();
+                posehandler.Move();
             }
-            executor.Move();
+            posehandler.Move();
         }
     };
 
     class TurnLeftCommand final : public ICommand
     {
     public:
-        void DoOperate(ExecutorImpl &executor) const noexcept override
+        void DoOperate(PoseHandler &posehandler) const noexcept override
         {
-            if (executor.isFast())
+            if (posehandler.isFast())
             {
-                executor.Move();
+                posehandler.Move();
             }
-            executor.TurnLeft();
+            posehandler.TurnLeft();
         }
     };
 
     class TurnRightCommand final : public ICommand
     {
     public:
-        void DoOperate(ExecutorImpl &executor) const noexcept override
+        void DoOperate(PoseHandler &posehandler) const noexcept override
         {
-            if (executor.isFast())
+            if (posehandler.isFast())
             {
-                executor.Move();
+                posehandler.Move();
             }
-            executor.TurnRight();
+            posehandler.TurnRight();
         }
     };
 
     class FastCommand final : public ICommand
     {
     public:
-        void DoOperate(ExecutorImpl &executor) const noexcept override
+        void DoOperate(PoseHandler &posehandler) const noexcept override
         {
-            executor.Fast();
+            posehandler.Fast();
         }
     };
 }
