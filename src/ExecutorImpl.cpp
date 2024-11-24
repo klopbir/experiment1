@@ -25,8 +25,9 @@ namespace adas
                 {'M', MoveCommand()}, // calls default constructor for the object
                 {'L', TurnLeftCommand()},
                 {'R', TurnRightCommand()},
-                {'F', FastCommand()}};
-        
+                {'F', FastCommand()},
+                {'B', ReverseCommand()}};
+
             // cmderMap.emplace('B', std::make_unique<ReverseCommand>);
             // std::unique_ptr<ICommand> cmder;
             const auto it = cmderMap.find(cmd); // find return pair<const Key, T> type if it finds the key, and unordered_map::end if it does not(end is element past the end of container)

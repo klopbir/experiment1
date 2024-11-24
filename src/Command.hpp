@@ -17,28 +17,25 @@ namespace adas
     {
     public: // enclosed class does not have access to private members of nested class
         // void DoOperate(PoseHandler &posehandler) const noexcept override
-        // {
-        //     if (posehandler.isFast())
-        //     {
-        //         posehandler.Move();
-        //     }
-        //     posehandler.Move();
-        // }
-        // const std::function<void(PoseHandler &PoseHandler)> operate = [](PoseHandler &poseHandler) noexcept
-        // {
-        //     if (poseHandler.isFast())
-        //     {
-        //         poseHandler.Move();
-        //     }
-        //     poseHandler.Move();
-        // };
         void operator()(PoseHandler &poseHandler) const noexcept
         {
             if (poseHandler.isFast())
             {
+                if (poseHandler.IsReverse())
+                {
+                    poseHandler.Backward();
+                }
+                else
+                    poseHandler.Forward();
+            }
+            if (poseHandler.IsReverse())
+            {
+                poseHandler.Backward();
+            }
+            else
+            {
                 poseHandler.Move();
             }
-            poseHandler.Move();
         }
     };
 
@@ -74,6 +71,14 @@ namespace adas
         void operator()(PoseHandler &poseHandler) const noexcept
         {
             poseHandler.Fast();
+        }
+    };
+    class ReverseCommand final
+    {
+    public:
+        void operator()(PoseHandler &poseHandler) const noexcept
+        {
+            poseHandler.Reverse();
         }
     };
 }

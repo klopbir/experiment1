@@ -9,13 +9,32 @@ namespace adas
     {
         fast = !fast;
     }
+    void PoseHandler::Reverse(void) noexcept
+    {
+        reverse = !reverse;
+    }
     bool PoseHandler::isFast(void) const noexcept
     {
         return fast;
     }
-    void PoseHandler::Move() noexcept
+    bool PoseHandler::IsReverse(void) const noexcept
+    {
+        return reverse;
+    }
+    void PoseHandler::Forward(void) noexcept
     {
         point += facing->Move();
+    }
+    void PoseHandler::Backward(void) noexcept
+    {
+        point -= facing->Move();
+    }
+    void PoseHandler::Move() noexcept
+    {
+        if (IsReverse())
+            point -= facing->Move();
+        else
+            point += facing->Move();
     }
 
     void PoseHandler::TurnLeft(void) noexcept
