@@ -1,5 +1,7 @@
 #pragma once
 #include <Executor.hpp>
+#include "Direction.hpp"
+#include "Point.hpp"
 
 namespace adas
 {
@@ -19,7 +21,8 @@ namespace adas
         Pose Query(void) const noexcept;
 
     private:
-        Pose pose;
+        Point point;
+        const Direction *facing;
         bool fast{false};
     };
 }

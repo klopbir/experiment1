@@ -8,6 +8,7 @@ namespace adas
         int x;
         int y;
         char heading;
+        Pose(int x, int y, char heading) : x(x), y(y), heading(heading) {}
     };
 
     class Executor
