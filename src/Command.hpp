@@ -26,7 +26,9 @@ namespace adas
                     poseHandler.Backward();
                 }
                 else
+                {
                     poseHandler.Forward();
+                }
             }
             if (poseHandler.IsReverse())
             {
@@ -34,7 +36,7 @@ namespace adas
             }
             else
             {
-                poseHandler.Move();
+                poseHandler.Forward();
             }
         }
     };
@@ -48,7 +50,14 @@ namespace adas
             {
                 poseHandler.Move();
             }
-            poseHandler.TurnLeft();
+            if (poseHandler.IsReverse())
+            {
+                poseHandler.TurnRight();
+            }
+            else
+            {
+                poseHandler.TurnLeft();
+            }
         }
     };
 
@@ -61,7 +70,14 @@ namespace adas
             {
                 poseHandler.Move();
             }
-            poseHandler.TurnRight();
+            if (poseHandler.IsReverse())
+            {
+                poseHandler.TurnLeft();
+            }
+            else
+            {
+                poseHandler.TurnRight();
+            }
         }
     };
 

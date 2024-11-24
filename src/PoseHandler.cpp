@@ -32,9 +32,13 @@ namespace adas
     void PoseHandler::Move() noexcept
     {
         if (IsReverse())
-            point -= facing->Move();
+        {
+            Backward();
+        }
         else
-            point += facing->Move();
+        {
+            Forward();
+        }
     }
 
     void PoseHandler::TurnLeft(void) noexcept
