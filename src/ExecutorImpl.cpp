@@ -21,18 +21,22 @@ namespace adas
     {
         for (const auto cmd : commands)
         {
-            std::unordered_map<char, std::unique_ptr<ICommand>> cmderMap;
-            cmderMap.emplace('M', std::make_unique<MoveCommand>());
-            cmderMap.emplace('L', std::make_unique<TurnLeftCommand>());
-            cmderMap.emplace('R', std::make_unique<TurnRightCommand>());
-            cmderMap.emplace('F', std::make_unique<FastCommand>());
+            std::unordered_map<char, std::function<void(PoseHandler & PoseHandler)>> cmderMap;
+            MoveCommand moveCommand;
+            cmderMap.emplace('M', moveCommand.operate);
+            TurnLeftCommand turnLeftCommand;
+            cmderMap.emplace('L', turnLeftCommand.operate);
+            TurnRightCommand turnRightCommand;
+            cmderMap.emplace('R', turnRightCommand.operate);
+            FastCommand fastCommand;
+            cmderMap.emplace('F', fastCommand.operate);
             // cmderMap.emplace('B', std::make_unique<ReverseCommand>);
             // std::unique_ptr<ICommand> cmder;
             const auto it = cmderMap.find(cmd); // find return pair<const Key, T> type if it finds the key, and unordered_map::end if it does not(end is element past the end of container)
             if (it != cmderMap.end())           // end returns iterator to end (iterator uses pair type as return value)
             {
-                it->second->DoOperate(posehandler); // second indicates mapped value
-            }
+                it->second(posehandler); // second indicates mapped value
+            } // second actually points to the object itself
         }
     }
 }
