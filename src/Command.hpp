@@ -24,48 +24,56 @@ namespace adas
         //     }
         //     posehandler.Move();
         // }
-        const std::function<void(PoseHandler &PoseHandler)> operate = [](PoseHandler &poseHandler) noexcept
+        // const std::function<void(PoseHandler &PoseHandler)> operate = [](PoseHandler &poseHandler) noexcept
+        // {
+        //     if (poseHandler.isFast())
+        //     {
+        //         poseHandler.Move();
+        //     }
+        //     poseHandler.Move();
+        // };
+        void operator()(PoseHandler &poseHandler) const noexcept
         {
             if (poseHandler.isFast())
             {
                 poseHandler.Move();
             }
             poseHandler.Move();
-        };
+        }
     };
 
     class TurnLeftCommand final
     {
     public:
-        const std::function<void(PoseHandler &PoseHandler)> operate = [](PoseHandler &poseHandler) noexcept
+        void operator()(PoseHandler &poseHandler) const noexcept
         {
             if (poseHandler.isFast())
             {
                 poseHandler.Move();
             }
             poseHandler.TurnLeft();
-        };
+        }
     };
 
     class TurnRightCommand final
     {
     public:
-        const std::function<void(PoseHandler &PoseHandler)> operate = [](PoseHandler &poseHandler) noexcept
+        void operator()(PoseHandler &poseHandler) const noexcept
         {
             if (poseHandler.isFast())
             {
                 poseHandler.Move();
             }
             poseHandler.TurnRight();
-        };
+        }
     };
 
     class FastCommand final
     {
     public:
-        const std::function<void(PoseHandler &PoseHandler)> operate = [](PoseHandler &poseHandler) noexcept
+        void operator()(PoseHandler &poseHandler) const noexcept
         {
             poseHandler.Fast();
-        };
+        }
     };
 }
