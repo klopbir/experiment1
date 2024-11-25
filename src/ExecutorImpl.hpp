@@ -1,7 +1,8 @@
 #pragma once
 
-#include "Executor.hpp"
+#include <Executor.hpp>
 #include <string>
+#include "PoseHandler.hpp"
 
 namespace adas
 {
@@ -19,8 +20,10 @@ namespace adas
     public:
         Pose Query(void) const noexcept override;
         void Execute(const std::string &commands) noexcept override;
+        // nested classes can be later declared as if functions, nested classes friends are not friends with encloser class
+        // u can access encloses classes private members as nested class is considered another member
 
     private:
-        Pose pose;
+        PoseHandler posehandler;
     };
 }

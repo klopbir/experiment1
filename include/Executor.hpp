@@ -8,6 +8,7 @@ namespace adas
         int x;
         int y;
         char heading;
+        Pose(int x, int y, char heading) : x(x), y(y), heading(heading) {}
     };
 
     class Executor
@@ -17,7 +18,8 @@ namespace adas
 
     public:
         Executor(void) = default;
-        virtual ~Executor(void) = default;
+        virtual ~Executor(void) = default; // so if there is base class pointer that points to derived class, it will actually call derived classes
+                                           // destructor
         Executor(const Executor &) = delete;
         Executor &operator=(const Executor &) = delete;
 

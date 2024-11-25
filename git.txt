@@ -1,0 +1,17 @@
+Git branches are simply pointers to a single commit in the history of repository
+HEAD is a special pointer that indicates the current branch u are working on
+
+When u create a new branch git creates a new pointer to the current commit, the new branch does not
+copy or create files, it just points to the same commit u are currently working on 
+
+When u use git switch <branch_name> or git checkout <commit_tag>/<branch_name> Git updates working directory
+to match the state of the commit that the branch points to
+
+git switch -c branch-name: to create new branch
+git branch : to list branches
+git branch -D branch-name : force delete a branch
+git merge branch-name : merges branch into current branch
+git rebase branch-name : reapplies commits from your branch on top of specified branch
+
+git branch ...:
+	so when u execute

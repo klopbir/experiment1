@@ -1,15 +1,11 @@
+#include "Executor.hpp"
+#include <PoseEq.hpp>
 #include <gtest/gtest.h>
 #include <memory>
-#include <tuple>
-#include "Executor.hpp"
-#include <iostream>
 
 namespace adas
 {
-    bool operator==(const Pose &lhs, const Pose &rhs)
-    {
-        return std::tie(lhs.x, lhs.y, lhs.heading) == std::tie(rhs.x, rhs.y, rhs.heading);
-    }
+
     TEST(ExecutorTest, should_return_init_pose_when_without_command)
     {
         std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'E'}));
@@ -84,7 +80,7 @@ namespace adas
     }
 
     // Test R
-    TEST(ExecutorTest, should_return_facing_S_given_command_is_R_and_facing_is_E) 
+    TEST(ExecutorTest, should_return_facing_S_given_command_is_R_and_facing_is_E)
     {
         std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'E'}));
         executor->Execute("R");
@@ -92,32 +88,27 @@ namespace adas
         ASSERT_EQ(target, executor->Query());
         // std::cout << executor->Query().heading << std::endl;
     }
-    TEST(ExecutorTest, should_return_facing_W_given_command_is_R_and_facing_is_S) 
+    TEST(ExecutorTest, should_return_facing_W_given_command_is_R_and_facing_is_S)
     {
         std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'S'}));
         executor->Execute("R");
         const Pose target({0, 0, 'W'});
         ASSERT_EQ(target, executor->Query());
     }
-    TEST(ExecutorTest, should_return_facing_N_given_command_is_R_and_facing_is_W) 
+    TEST(ExecutorTest, should_return_facing_N_given_command_is_R_and_facing_is_W)
     {
         std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'W'}));
         executor->Execute("R");
         const Pose target({0, 0, 'N'});
         ASSERT_EQ(target, executor->Query());
     }
-    TEST(ExecutorTest, should_return_facing_E_given_command_is_R_and_facing_is_N) 
+    TEST(ExecutorTest, should_return_facing_E_given_command_is_R_and_facing_is_N)
     {
         std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'N'}));
         executor->Execute("R");
         const Pose target({0, 0, 'E'});
         ASSERT_EQ(target, executor->Query());
     }
-    // TEST(ExecutorTest, should_return_x_plus_1_given_command_is_M_and_facing_is_E)
-    // {
-    //     std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'E'}));
-    //     executor->Execute("M");
-    //     const Pose target({1, 0, 'E'});
-    //     ASSERT_EQ(target, executor->Query());
-    // }
+    // testing Fast commands
+
 }
